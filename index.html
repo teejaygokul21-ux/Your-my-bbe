@@ -1,10 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Page</title>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef6);
+      font-family: "Poppins", system-ui, -apple-system, Arial, sans-serif;
+    }
+    .card {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 90%;
+      width: 420px;
+    }
+    h1 {
+      margin: 0 0 25px;
+      font-size: 26px;
+      color: #333;
+    }
+    h1 span { color: #e6005c; }
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    #yes {
+      background: #e6005c;
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(230,0,92,0.35);
+    }
+    #no {
+      position: absolute;
+      right: 0;
+      background: #eaeaea;
+      color: #333;
+    }
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: float 4s linear infinite;
+    }
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Prathii</h1>
-    <p>Welcome to my page!</p>
+
+  <div class="card">
+    <h1>Prathii, <br>will you be my <span>Valentine?</span> 💖</h1>
+    <div class="buttons">
+      <button id="yes">YES</button>
+      <button id="no">NO</button>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const heartsBox = document.getElementById("hearts");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 250;
+      const y = Math.random() * 40;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+        heartsBox.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+      setTimeout(() => {
+        alert("Yayyy! 💕 Happy Valentine's Day!");
+      }, 300);
+    });
+  </script>
+
 </body>
 </html>
